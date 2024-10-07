@@ -11,7 +11,7 @@ O jogo
 * No início do jogo, há 21 fósforos;
 * Cada jogador (computador ou utilizador), pode tirar 1, 2, 3 ou 4 fósforos quando for a sua vez de jogar;
 * Os jogadores jogam alternadamente;
-* Quem tirar o último fósforo perde!**
+* Quem tirar o último fósforo perde!
 
 O programa 
 
