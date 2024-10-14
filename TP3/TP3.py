@@ -1,60 +1,70 @@
 import random
 
-def escolha():
-    print("1. Começa o utilizador.")
-    print("2. Começa o computador.")
-    print("3. Sair.")
-    opcao = input("Escolha uma opção: ")
-    return opcao
-
-def utilizador(): #utilizador começa 
+def jogador_primeiro():
     fosforos = 21
-    jogo_ativo = 1
-    while fosforos > 1 and jogo_ativo == 1:
-        jog = int(input("Começas a tirar os fósforos, quantos queres tirar? "))
-        fosforos -= jog
-        print(f"Retiraste {jog} fósforos. Ficaram {fosforos} fósforos.")
-        if fosforos <= 1:
-            print("Perdeste! Agora és tu e sobra apenas 1 fósforo!")
-            jogo_ativo = 0
-        if jogo_ativo == 1:
-            comp = 5 - jog
-            fosforos -= comp
-            print(f"Retirei {comp} fósforos. Ficaram {fosforos} fósforos.")
-            if fosforos <= 1:
-                print("Ganhei! Sobra apenas 1 fósforo.")
-                jogo_ativo = 0
+    while fosforos > 1:
+        jogador = int(input(f"Há {fosforos} fósforos. Quantos deseja retirar (1-4)? "))
+        while (jogador < 1 or jogador > 4) or jogador > fosforos:
+            jogador = int(input("Entrada inválida. Escolha um valor entre 1 e 4 que não exceda o número de fósforos restantes: "))
+            
+        fosforos -= jogador
 
-def pc(): #pc começa 
+        computador = 5 - jogador
+        fosforos -= computador
+        print(f"O computador retirou {computador} fósforos.")
+    print('Perdeste!')
+
+
+
+def computador_primeiro():
     fosforos = 21
-    jogo_ativo = 1
-    while fosforos > 1 and jogo_ativo == 1:
-        comp = random.randint(1, 4)
-        fosforos -= comp
-        print(f"Retirei {comp} fósforos. Ficaram {fosforos} fósforos.")
-        if fosforos <= 1:
-            print("Ganhei! Sobra apenas 1 fósforo.")
-            jogo_ativo = 0
-        if jogo_ativo == 1:
-            jog = int(input("É a tua vez, quantos fósforos queres tirar? "))
-            fosforos -= jog
-            print(f"Retiraste {jog} fósforos. Ficaram {fosforos} fósforos.")
-            if fosforos <= 1:
-                print("Ganhaste. Agora sou eu e sobra apenas 1 fósforo.")
-                jogo_ativo = 0
+
+    while fosforos > 0:
+        # Turno do computador
+        computador = (fosforos - 1) % 5
+        if computador == 0 or computador > fosforos:
+            computador = random.randint(1, min(4, fosforos))
+
+        fosforos -= computador
+        print(f"O computador retirou {computador} fósforos.")
+
+      
+        if fosforos == 1:
+            print("Sobrou apenas 1 fósforo. O computador ganhou!")
+            return  # Encerra a função se o computador perder
+
+        # Turno do jogador
+        jogador = int(input(f"Há {fosforos} fósforos. Quantos deseja retirar (1-4)? "))
+        while jogador < 1 or jogador > 4 or jogador > fosforos:
+            jogador = int(input("Entrada inválida. Escolha um valor entre 1 e 4 que não exceda o número de fósforos restantes: "))
+  
+        fosforos -= jogador
+        if fosforos == 1:
+            print("Sobrou 1 fósforo. Ganhaste!")
+            return        
+
+
+
+
+
+
 
 def main():
-    opcao = ""
-    while opcao != "3":
-        opcao = escolha()
-        if opcao == "1":
-            utilizador()
-        elif opcao == "2":
-            pc()
-        elif opcao == "3":
-            print("ok!")
+    print("Bem-vindo ao jogo dos 21 fósforos!")
+    modo = ''
+    while modo != '3':
+        modo = input("Escolha o modo de jogo:\n1 - Jogador começa\n2 - Computador começa\n3 - Sair do jogo\nEscolha: ")
+        if modo == '1':
+            jogador_primeiro()
+            modo = input("Escolha o modo de jogo:\n1 - Jogador começa\n2 - Computador começa\n3 - Sair do jogo\nEscolha: ")
+        elif modo == '2':
+            computador_primeiro()
+            modo = input("Escolha o modo de jogo:\n1 - Jogador começa\n2 - Computador começa\n3 - Sair do jogo\nEscolha: ")
+        elif modo == '3':
+            print("Saindo do jogo. Até a próxima!")
         else:
-            print("Opção desconhecida")
+            print("Modo inválido. Por favor, escolha 1, 2 ou 3.")
+    
 
-if __name__ == "__main__":
-    main()
+
+main()
