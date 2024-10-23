@@ -1,5 +1,5 @@
 # README.MD Resumo de TP6
-## Data: 2024-10-20
+## Data: 2024-10-21
 ## Autor: Ana Filipa Fernandes Figueiredo
 ## Resumo
 ### TPC6: Aplicação para gestão de alunos
