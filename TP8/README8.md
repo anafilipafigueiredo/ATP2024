@@ -1,4 +1,4 @@
-# RESUMO DO TP7
+# RESUMO DO TP8
 ## Dados: 2024-11-04
 ## Autor: Ana Filipa Fernandes Figueiredo
 ## Resumo:
