@@ -130,4 +130,4 @@ while op != 0:
             else:
                 print(f"A sua posição é -1.")
 
-print("Trenminou o programa!")
+print("Terminou o programa!")
